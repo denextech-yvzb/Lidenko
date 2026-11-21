@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lidenko Tech ni kampuni ya teknolojia inayotengeneza tovuti, mifumo ya biashara na suluhisho za kidijitali.">
+  <meta name="theme-color" content="#111714">
+  <title>Lidenko Tech | Programu na Suluhisho za Kidijitali</title>
+  <style>
+    :root{
+      --bg:#101512;--surface:#171e19;--surface-2:#1d2620;--text:#edf1ed;
+      --muted:#a4afa7;--line:#2b3730;--green:#9bb69f;--green-dark:#263d2e;
+      --white:#fff;--max:1160px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:86px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+    a{color:inherit}
+    img{display:block;max-width:100%}
+    .container{width:min(var(--max),calc(100% - 44px));margin-inline:auto}
+    .header{height:76px;position:sticky;top:0;z-index:100;background:rgba(16,21,18,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    .nav-wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-size:19px;font-weight:700;letter-spacing:-.5px}
+    .brand-mark{width:36px;height:36px;display:grid;place-items:center;background:#dce8dd;color:#17251b;border-radius:5px;font-size:21px;font-weight:800}
+    .brand span:last-child strong{color:var(--green);font-weight:500}
+    .nav{display:flex;align-items:center;gap:29px}
+    .nav a{text-decoration:none;color:#c2cbc4;font-size:13px;transition:color .2s}
+    .nav a:hover,.nav a.active{color:#fff}
+    .nav .contact-link{border:1px solid #64776a;border-radius:4px;padding:9px 15px;color:#eaf0eb}
+    .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:4px;color:white;padding:8px 10px;font-size:20px}\n    .lang-btn{background:transparent;border:1px solid #64776a;border-radius:4px;color:#eaf0eb;padding:8px 11px;font-size:12px;font-weight:700;cursor:pointer}\n    .nav-tools{display:flex;align-items:center;gap:12px}
+    .hero{padding:92px 0 86px;background:linear-gradient(110deg,#141c17 0%,#101512 55%,#18231c 100%)}
+    .hero-grid{display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:64px}
+    .eyebrow{color:var(--green);font-size:11px;letter-spacing:2px;font-weight:700;margin:0 0 16px;text-transform:uppercase}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(42px,5.6vw,67px);line-height:1.08;letter-spacing:-2.7px;margin-bottom:22px;font-weight:700}
+    h1 span{color:var(--green);font-weight:500}
+    .hero-copy>p:not(.eyebrow){font-size:17px;color:var(--muted);max-width:520px;line-height:1.8}
+    .actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:31px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 19px;border-radius:4px;text-decoration:none;font-size:13px;font-weight:700;transition:background .2s,border .2s}
+    .btn-primary{background:#dce8dd;color:#17251b;border:1px solid #dce8dd}
+    .btn-primary:hover{background:#c4d7c7}
+    .btn-outline{border:1px solid #536459;color:#e5ece6}
+    .btn-outline:hover{background:var(--surface-2)}
+    .hero-photo{height:405px;position:relative;overflow:hidden;border-radius:5px}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+    .photo-caption{position:absolute;left:20px;bottom:20px;background:rgba(12,18,14,.82);padding:12px 15px;border-left:2px solid var(--green);font-size:12px;color:#e7eee8}
+    .section{padding:84px 0}
+    .section-head{max-width:650px;margin-bottom:37px}
+    .section-head h2,.about-copy h2,.contact-copy h2{font-size:clamp(30px,4vw,42px);line-height:1.2;letter-spacing:-1.3px;margin:0 0 13px}
+    .section-head>p:last-child,.muted{color:var(--muted)}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .service{background:var(--surface);border:1px solid var(--line);padding:26px 24px;min-height:220px;border-radius:4px}
+    .service-no{color:var(--green);font-size:12px;font-weight:700;letter-spacing:1px}
+    .service h3{font-size:18px;margin:18px 0 9px}
+    .service p{color:var(--muted);font-size:14px;margin:0}
+    .about{background:#151d18;border-top:1px solid #202b24;border-bottom:1px solid #202b24}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .about-photo{height:390px;border-radius:4px;overflow:hidden}
+    .about-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.8)}
+    .about-copy>p:not(.eyebrow){color:var(--muted);font-size:15px}
+    .values{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:25px}
+    .value{padding:14px;background:#1c2720;border:1px solid #2c3b30;border-radius:4px}
+    .value strong{display:block;font-size:13px;margin-bottom:3px}
+    .value span{font-size:12px;color:var(--muted)}
+    .leaders{display:flex;gap:36px;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+    .leader{display:flex;flex-direction:column}
+    .leader strong{font-size:16px}
+    .leader span{font-size:12px;color:var(--green)}
+    .projects{background:var(--bg)}
+    .project-card{display:grid;grid-template-columns:.9fr 1.1fr;background:var(--surface);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+    .project-image{min-height:300px}
+    .project-image img{width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+    .project-info{padding:32px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+    .project-tag{font-size:10px;letter-spacing:1.6px;color:var(--green);font-weight:700;margin-bottom:11px}
+    .project-info h3{font-size:26px;letter-spacing:-.5px;margin-bottom:10px}
+    .project-info p{font-size:14px;color:var(--muted);max-width:510px}
+    .project-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .download-note{font-size:11px;color:#87948b;margin-top:15px}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
+    .why-item{border-top:1px solid var(--line);padding-top:18px}
+    .why-item h3{font-size:16px;margin-bottom:7px}
+    .why-item p{font-size:13px;color:var(--muted);margin:0}
+    .contact{background:#151d18;border-top:1px solid #202b24}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:65px}
+    .contact-copy>p:not(.eyebrow){color:var(--muted);max-width:460px}
+    .contact-list{display:grid;gap:0}
+    .contact-row{padding:17px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column}
+    .contact-row span{font-size:11px;color:var(--green);letter-spacing:1px;text-transform:uppercase}
+    .contact-row a,.contact-row strong{font-size:15px;text-decoration:none;margin-top:3px}
+    .contact-row a:hover{color:var(--green)}
+    footer{padding:24px 0;background:#0d120f}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .footer-inner p{font-size:11px;color:#89958c;margin:0}
+    .footer-links{display:flex;gap:18px}
+    .footer-links a{font-size:11px;color:#aab4ac;text-decoration:none}
+    .back-top{position:fixed;right:18px;bottom:18px;width:39px;height:39px;display:grid;place-items:center;border:1px solid #56685b;border-radius:4px;background:#1c2920;color:white;text-decoration:none;opacity:0;pointer-events:none;transition:opacity .2s}
+    .back-top.show{opacity:1;pointer-events:auto}
+    @media(max-width:820px){
+      .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr;gap:34px}
+      .hero{padding:65px 0}.hero-photo{height:300px}
+      .about-photo{height:290px}
+      .services-grid{grid-template-columns:1fr 1fr}
+      .nav{gap:17px}
+      .project-card{grid-template-columns:1fr}
+      .project-image{height:230px;min-height:0}
+    }
+    @media(max-width:620px){
+      .container{width:calc(100% - 34px)}
+      .header{height:68px}.menu-btn{display:block}
+      .nav{display:none;position:absolute;left:0;right:0;top:67px;background:#121914;border-bottom:1px solid var(--line);padding:10px 22px 18px;align-items:stretch;gap:0;flex-direction:column}
+      .nav.open{display:flex}
+      .nav a{padding:11px 2px}
+      .nav .contact-link{border:0;padding:11px 2px}
+      .hero{padding:54px 0 58px}
+      h1{font-size:43px;letter-spacing:-1.8px}
+      .hero-copy>p:not(.eyebrow){font-size:15px}
+      .hero-photo{height:235px}
+      .section{padding:62px 0}
+      .services-grid,.why-grid{grid-template-columns:1fr}
+      .service{min-height:0;padding:22px}
+      .about-grid{gap:25px}
+      .about-photo{height:230px}
+      .values{grid-template-columns:1fr 1fr}
+      .project-info{padding:24px 20px}
+      .project-info h3{font-size:23px}
+      .contact-grid{gap:25px}
+      .footer-inner{align-items:flex-start;flex-direction:column}
+      .leaders{gap:28px}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="Lidenko Tech mwanzo">
+        <span class="brand-mark">L</span><span>Lidenko <strong>Tech</strong></span>
+      </a>
+      <div class="nav-tools"><button class="lang-btn" id="langToggle" type="button" aria-label="Change language">EN</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Fungua menyu" aria-expanded="false">☰</button></div>
+      <nav class="nav" id="mainNav" aria-label="Menyu kuu">
+        <a href="#home">Mwanzo</a>
+        <a href="#services">Huduma</a>
+        <a href="#about">Kuhusu sisi</a>
+        <a href="#projects">Miradi yetu</a>
+        <a class="contact-link" href="#contact">Mawasiliano</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">LIDENKO TECH · PROGRAMU NA SULUHISHO ZA KIDIJITALI</p>
+          <h1>Teknolojia kwa<br><span>maendeleo ya kila siku.</span></h1>
+          <p>Tunatengeneza zana za kidijitali zinazowasaidia watu na biashara kufanya kazi kwa urahisi zaidi. Tunatengeneza tovuti za biashara na mifumo maalumu inayorahisisha shughuli za kila siku.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">Tazama miradi yetu <span>→</span></a>
+            <a class="btn btn-outline" href="#contact">Wasiliana nasi</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="https://nikanet.co.tz/assets/images/nikanet_team.png" alt="Watanzania wakifanya kazi pamoja kwenye ofisi ya teknolojia">
+          <div class="photo-caption">Teknolojia yenye maana. Matokeo yanayoonekana.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">HUDUMA ZETU</p>
+          <h2>Huduma kulingana na mahitaji yako</h2>
+          <p>Tunatoa huduma za kidijitali kwa taasisi, biashara na watu binafsi. Kwanza tunasikiliza mahitaji yako, kisha tunatengeneza suluhisho linalokufaa.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service"><span class="service-no">01 / WEB</span><h3>Utengenezaji wa Tovuti</h3><p>Tovuti za biashara, kurasa za matangazo na tovuti za kuonyesha kazi zako. Zinafanya kazi vizuri kwenye simu, tableti na kompyuta.</p></article>
+          <article class="service"><span class="service-no">02 / SOFTWARE</span><h3>Utengenezaji wa Mifumo</h3><p>Tunatengeneza mifumo kulingana na mahitaji ya biashara, kama kurekodi mauzo, kusimamia bidhaa na stoo, pamoja na kutoa ripoti.</p></article>
+          <article class="service"><span class="service-no">03 / BUSINESS</span><h3>Suluhisho za Biashara</h3><p>Zana za kidijitali zinazosaidia kupanga taarifa za biashara, kupunguza kazi zinazojirudia na kurahisisha utunzaji wa kumbukumbu.</p></article>
+          <article class="service"><span class="service-no">04 / IT</span><h3>Msaada wa TEHAMA</h3><p>Tunatoa msaada wa kiufundi, kusakinisha programu na kuelekeza watu kutumia vifaa na teknolojia kwa ufanisi.</p></article>
+          <article class="service"><span class="service-no">05 / DESIGN</span><h3>Muonekano wa Tovuti na Programu</h3><p>Tunatengeneza miundo rahisi inayoeleweka na inayorahisisha matumizi ya tovuti na programu.</p></article>
+          <article class="service"><span class="service-no">06 / CONSULTING</span><h3>Ushauri wa Teknolojia</h3><p>Tunashauri kuhusu zana zinazofaa na namna ya kupanga mradi wa tovuti au mfumo kabla ya kuanza kuutengeneza.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-photo"><img src="https://www.mayocoo.com/images/mayocoo-staff2.jpg" alt="Watanzania wakishirikiana kwenye kazi ya ofisini"></div>
+        <div class="about-copy">
+          <p class="eyebrow">KUHUSU LIDENKO TECH</p>
+          <h2>Kampuni ya teknolojia inayolenga kutatua changamoto.</h2>
+          <p>Lidenko Tech ni kampuni ya teknolojia inayojihusisha na utengenezaji wa mifumo, tovuti na suluhisho za kidijitali. Tunaamini teknolojia inapaswa kutatua matatizo halisi, si kufanya mambo rahisi yawe magumu.</p>
+          <p>Namna yetu ya kufanya kazi ni rahisi: tunasikiliza, tunaelewa changamoto, tunapanga kazi na kutengeneza suluhisho linalowafaa watakaolitumia. Tunathamini mawasiliano ya wazi, kujifunza kila siku na kufanya kazi yenye lengo.</p>
+          <p>Iwe unahitaji tovuti ya kampuni au mfumo wa kusaidia shughuli za biashara, lengo letu ni kutengeneza kitu kinachoaminika na rahisi kutumia.</p>
+          <div class="values">
+            <div class="value"><strong>Kufikiri kwa vitendo</strong><span>Tunazingatia mahitaji halisi.</span></div>
+            <div class="value"><strong>Mawasiliano mazuri</strong><span>Tunaeleza hatua kwa uwazi.</span></div>
+            <div class="value"><strong>Kazi bora</strong><span>Tunajali ubora wa kila sehemu.</span></div>
+            <div class="value"><strong>Kuendelea kujifunza</strong><span>Tunajifunza na kuboresha kazi zetu.</span></div>
+          </div>
+          <div class="leaders">
+            <div class="leader"><strong>Kelvin</strong><span>Mkurugenzi Mkuu</span></div>
+            <div class="leader"><strong>Denis</strong><span>Mkurugenzi Mkuu</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">MIRADI YETU</p>
+          <h2>Miradi unayoweza kuiona</h2>
+          <p>Huu ni mmoja wa mifumo yetu. Ikiwa unahitaji kutumia LIDENKO POS, bonyeza kitufe hapa chini kutuma ombi kupitia WhatsApp. Tutakuelekeza kuhusu mfumo na taarifa zinazohitajika kuunganisha AI.</p>
+        </div>
+        <article class="project-card">
+          <div class="project-image"><img src="https://static.africa-press.net/tanzania/sites/17/2026/02/sm_1770500704.944634.jpg" alt="Business team reviewing work and information on a laptop"></div>
+          <div class="project-info">
+            <span class="project-tag">USIMAMIZI WA BIASHARA · MFUMO WA MAUZO</span>
+            <h3>LIDENKO POS</h3>
+            <p>LIDENKO POS ni mfumo wa kusimamia biashara na kurekodi mauzo. Unasaidia kufanya kazi za kila siku kama kurekodi mauzo, kusimamia bidhaa na stoo, na kuweka taarifa za biashara sehemu moja.</p>
+            <p>Mradi huu umewekwa hapa kama sehemu ya miradi ya Lidenko Tech.</p>
+            <div class="project-actions">
+              <a class="btn btn-primary" href="https://wa.me/255683505211?text=Habari%20Lidenko%20Tech%2C%20naomba%20kupata%20mfumo%20wa%20LIDENKO%20POS.%20Naomba%20pia%20APP%20Token%2C%20AI%20Server%20URL%2C%20na%20maelekezo%20ya%20kusakinisha%20mfumo%20na%20kuunganisha%20AI.%20Tafadhali%20nielekezeni%20hatua%20zote%20na%20masharti%20ya%20matumizi." target="_blank" rel="noopener">Omba Mfumo wa Lidenko →</a>
+              <a class="btn btn-outline" href="#ai-setup">Jinsi ya kuunganisha AI ↗</a>
+            </div>
+            <span class="download-note">Tuma ombi kupitia WhatsApp ili upate maelezo ya mfumo, APP Token, AI Server URL na hatua za kuanza kutumia LIDENKO POS.</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="section" id="ai-setup">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">LIDENKO AI · OMBI LA MUUNGANISHO</p>
+          <h2>Unahitaji kutumia AI ndani ya Lidenko POS?</h2>
+          <p>Ili AI ifanye kazi mtandaoni, utahitaji anwani ya seva ya AI (Server URL) na APP Token. Tutakuelekeza namna ya kuviweka ndani ya programu.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service"><span class="service-no">01 / OMBI</span><h3>Omba APP Token na Server URL</h3><p>Tuma ujumbe kwa Lidenko Tech ukiomba kuunganishiwa AI. Tutakupa Server URL na APP Token utakazotumia kwenye programu yako. Usitumie au kushare token yako hadharani.</p><div class="project-actions"><a class="btn btn-primary" href="https://wa.me/255683505211?text=Habari%20Lidenko%20Tech%2C%20naomba%20kupata%20APP%20Token%20na%20Server%20URL%20kwa%20ajili%20ya%20kuunganisha%20AI%20ndani%20ya%20Lidenko%20POS.%20Naomba%20maelekezo%20ya%20kuanza." target="_blank" rel="noopener">Tuma ombi WhatsApp →</a></div></article>
+          <article class="service"><span class="service-no">02 / SERVER URL</span><h3>Weka anwani ya seva</h3><p>Fungua Lidenko POS, nenda sehemu ya AI, kisha fungua “Mipangilio ya seva ya AI”. Kwenye sehemu ya “Anwani ya seva”, bandika URL uliyopewa. Mfano wa muundo: https://jina-la-seva.example.com</p></article>
+          <article class="service"><span class="service-no">03 / APP TOKEN</span><h3>Weka token yako</h3><p>Kwenye sehemu ya “Token”, bandika APP Token uliyopewa. Kisha bonyeza “Hifadhi”. Token hii si Groq API Key; usiweke Groq key kwenye programu.</p></article>
+          <article class="service"><span class="service-no">04 / THIBITISHA</span><h3>Jaribu muunganisho</h3><p>Bonyeza “Jaribu muunganisho”. Ikiwa taarifa ni sahihi na simu ina intaneti, programu itajaribu kuwasiliana na seva. Ujumbe utaonyesha kama muunganisho umefanikiwa au kuna tatizo.</p></article>
+        </div>
+        <div class="value" style="margin-top:18px;padding:20px"><strong>Mambo ya kuzingatia</strong><span>AI ya mtandaoni inahitaji intaneti, Server URL inayofanya kazi na APP Token sahihi. Seva ya Python ndiyo inayohifadhi Groq API Key; mtumiaji wa programu anahitaji APP Token tu. Hifadhi token yako kwa usalama na usimtumie mtu mwingine.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">KWANINI UFANYE KAZI NASI</p>
+          <h2>Namna rahisi ya kutengeneza suluhisho</h2>
+          <p>Kazi nzuri ya teknolojia huanza kwa kuelewa watu na changamoto zinazohitaji kutatuliwa.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-item"><h3>Tunasikiliza kwanza</h3><p>Tunachukua muda kuelewa unachohitaji kabla ya kushauri au kutengeneza suluhisho.</p></div>
+          <div class="why-item"><h3>Tunafanya iwe rahisi kutumia</h3><p>Tunatengeneza mifumo inayoeleweka na rahisi kutumia kila siku.</p></div>
+          <div class="why-item"><h3>Tunafikiria mbele</h3><p>Tunatengeneza kazi zinazoweza kuboreshwa kadiri mahitaji yanavyobadilika.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow">MAWASILIANO</p>
+          <h2>Tuongee kuhusu unachotaka kutengeneza.</h2>
+          <p>Una wazo, changamoto ya biashara au mradi unaotaka kuujadili? Wasiliana na Lidenko Tech. Tueleze kwa kifupi unachohitaji ili tuzungumzie hatua zinazofuata.</p>
+          <a class="btn btn-primary" href="https://wa.me/255683505211" target="_blank" rel="noopener">Wasiliana nasi WhatsApp →</a>
+        </div>
+        <div class="contact-list">
+          <div class="contact-row"><span>Kampuni</span><strong>Lidenko Tech</strong></div>
+          <div class="contact-row"><span>Barua pepe</span><a href="mailto:hello@lidenkotech.com">hello@lidenkotech.com</a></div>
+          <div class="contact-row"><span>WhatsApp</span><a href="https://wa.me/255683505211" target="_blank" rel="noopener">0683505211</a></div>
+          <div class="contact-row"><span>Instagram</span><a href="https://www.instagram.com/nexora_tech_v1/" target="_blank" rel="noopener">nexora_tech_v1</a></div>
+          <div class="contact-row"><span>YouTube</span><a href="https://www.youtube.com/@nexora-tech-z5e" target="_blank" rel="noopener">nexora-tech-z5e</a></div>
+          <div class="contact-row"><span>TikTok</span><a href="https://www.tiktok.com/@dinnix65" target="_blank" rel="noopener">@dinnix65</a></div>
+          <div class="contact-row"><span>Facebook</span><a href="https://www.facebook.com/search/top?q=Denis%20Albert" target="_blank" rel="noopener">Denis Albert</a></div>
+          <div class="contact-row"><span>Uongozi</span><strong>Kelvin na Denis · Wakurugenzi Wakuu</strong></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">L</span><span>Lidenko <strong>Tech</strong></span></a>
+      <p>© <span id="year"></span> Lidenko Tech. Haki zote zimehifadhiwa.</p>
+      <div class="footer-links"><a href="#services">Huduma</a><a href="#about">Kuhusu sisi</a><a href="#contact">Mawasiliano</a></div>
+    </div>
+  </footer>
+  <a class="back-top" id="backTop" href="#home" aria-label="Rudi juu">↑</a>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mainNav = document.getElementById('mainNav');
+
+    menuBtn.addEventListener('click', function () {
+      const opened = mainNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(opened));
+      menuBtn.textContent = opened ? '✕' : '☰';
+    });
+
+    mainNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mainNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', function () {
+      backTop.classList.toggle('show', window.scrollY > 450);
+    });
+  </script>
+
+  <script>
+  (function () {
+    const translations = {
+      'Mwanzo':'Home','Huduma':'Services','Kuhusu sisi':'About us','Miradi yetu':'Our projects','Mawasiliano':'Contact',
+      'LIDENKO TECH · PROGRAMU NA SULUHISHO ZA KIDIJITALI':'LIDENKO TECH · SOFTWARE AND DIGITAL SOLUTIONS',
+      'Teknolojia kwa<br><span>maendeleo ya kila siku.</span>':'Technology for<br><span>everyday progress.</span>',
+      'Tunatengeneza zana za kidijitali zinazowasaidia watu na biashara kufanya kazi kwa urahisi zaidi. Tunatengeneza tovuti za biashara na mifumo maalumu inayorahisisha shughuli za kila siku.':'We build digital tools that help people and businesses work more easily. Our work includes business websites and custom systems for everyday tasks.',
+      'Tazama miradi yetu <span>→</span>':'View our projects <span>→</span>','Wasiliana nasi':'Contact us',
+      'Teknolojia yenye maana. Matokeo yanayoonekana.':'Useful technology. Real results.',
+      'HUDUMA ZETU':'OUR SERVICES','Huduma kulingana na mahitaji yako':'Services that fit your needs',
+      'Tunatoa huduma za kidijitali kwa taasisi, biashara na watu binafsi. Kwanza tunasikiliza mahitaji yako, kisha tunatengeneza suluhisho linalokufaa.':'We provide digital services for organisations, businesses and individuals. First, we understand what you need, then we build a suitable solution.',
+      'Utengenezaji wa Tovuti':'Website Development','Tovuti za biashara, kurasa za matangazo na tovuti za kuonyesha kazi zako. Zinafanya kazi vizuri kwenye simu, tableti na kompyuta.':'Business websites, landing pages and portfolios that work well on phones, tablets and computers.',
+      'Utengenezaji wa Mifumo':'Software Development','Tunatengeneza mifumo kulingana na mahitaji ya biashara, kama kurekodi mauzo, kusimamia bidhaa na stoo, pamoja na kutoa ripoti.':'We build systems for business needs, such as recording sales, managing products and stock, and preparing reports.',
+      'Suluhisho za Biashara':'Business Solutions','Zana za kidijitali zinazosaidia kupanga taarifa za biashara, kupunguza kazi zinazojirudia na kurahisisha utunzaji wa kumbukumbu.':'Digital tools that organise business information, reduce repetitive work and make record keeping easier.',
+      'Msaada wa TEHAMA':'IT Support','Tunatoa msaada wa kiufundi, kusakinisha programu na kuelekeza watu kutumia vifaa na teknolojia kwa ufanisi.':'We provide technical support, software installation and guidance on using technology effectively.',
+      'Muonekano wa Tovuti na Programu':'Website and App Design','Tunatengeneza miundo rahisi inayoeleweka na inayorahisisha matumizi ya tovuti na programu.':'We create clean, easy-to-use designs for websites and applications.',
+      'Ushauri wa Teknolojia':'Technology Consulting','Tunashauri kuhusu zana zinazofaa na namna ya kupanga mradi wa tovuti au mfumo kabla ya kuanza kuutengeneza.':'We help you choose suitable tools and plan a website or software project before development begins.',
+      'KUHUSU LIDENKO TECH':'ABOUT LIDENKO TECH','Kampuni ya teknolojia inayolenga kutatua changamoto.':'A technology company focused on solving real problems.',
+      'Lidenko Tech ni kampuni ya teknolojia inayojihusisha na utengenezaji wa mifumo, tovuti na suluhisho za kidijitali. Tunaamini teknolojia inapaswa kutatua matatizo halisi, si kufanya mambo rahisi yawe magumu.':'Lidenko Tech is a technology company that builds software, websites and digital solutions. We believe technology should solve real problems and make everyday work easier.',
+      'Namna yetu ya kufanya kazi ni rahisi: tunasikiliza, tunaelewa changamoto, tunapanga kazi na kutengeneza suluhisho linalowafaa watakaolitumia. Tunathamini mawasiliano ya wazi, kujifunza kila siku na kufanya kazi yenye lengo.':'Our process is simple: we listen, understand the challenge, plan the work and build a solution for the people who will use it. We value clear communication, continuous learning and purposeful work.',
+      'Iwe unahitaji tovuti ya kampuni au mfumo wa kusaidia shughuli za biashara, lengo letu ni kutengeneza kitu kinachoaminika na rahisi kutumia.':'Whether you need a company website or a system for your business, our goal is to build something reliable and easy to use.',
+      'Kufikiri kwa vitendo':'Practical thinking','Tunaangazia mahitaji halisi.':'We focus on real needs.',
+      'Mawasiliano mazuri':'Clear communication','Tunaeleza hatua kwa uwazi.':'We explain each step clearly.',
+      'Kazi bora':'Quality work','Tunajali ubora wa kila sehemu.':'We care about every detail.',
+      'Kuendelea kujifunza':'Continuous learning','Tunajifunza na kuboresha kazi zetu.':'We keep learning and improving our work.',
+      'MIRADI YETU':'OUR PROJECTS','Miradi unayoweza kuiona':'Projects you can explore',
+      'Huu ni mmoja wa mifumo yetu. Ikiwa unahitaji kutumia LIDENKO POS, bonyeza kitufe hapa chini kutuma ombi kupitia WhatsApp. Tutakuelekeza kuhusu mfumo na taarifa zinazohitajika kuunganisha AI.':'This is one of our systems. If you want to use LIDENKO POS, use the button below to request it on WhatsApp. We will guide you on getting the system and the details needed to connect AI.',
+      'USIMAMIZI WA BIASHARA · MFUMO WA MAUZO':'BUSINESS MANAGEMENT · SALES SYSTEM',
+      'LIDENKO POS':'LIDENKO POS',
+      'LIDENKO POS ni mfumo wa kusimamia biashara na kurekodi mauzo. Unasaidia kufanya kazi za kila siku kama kurekodi mauzo, kusimamia bidhaa na stoo, na kuweka taarifa za biashara sehemu moja.':'Lidenko POS is a business management and sales system. It helps you record sales, manage products and stock, and keep business information in one place.',
+      'Mradi huu umewekwa hapa kama sehemu ya miradi ya Lidenko Tech.':'This project is part of Lidenko Tech’s work.',
+      'Omba Mfumo wa Lidenko →':'Request Lidenko System →','Jinsi ya kuunganisha AI ↗':'How to connect AI ↗',
+      'Tuma ombi kupitia WhatsApp ili upate maelezo ya mfumo, APP Token, AI Server URL na hatua za kuanza kutumia LIDENKO POS.':'Send a WhatsApp request to get system details, your APP Token, AI Server URL and the steps to get started with LIDENKO POS.',
+      'LIDENKO AI · OMBI LA MUUNGANISHO':'LIDENKO AI · CONNECTION REQUEST',
+      'Unahitaji kutumia AI ndani ya Lidenko POS?':'Want to use AI inside Lidenko POS?',
+      'Ili AI ifanye kazi mtandaoni, utahitaji anwani ya seva ya AI (Server URL) na APP Token. Tutakuelekeza namna ya kuviweka ndani ya programu.':'To use online AI, you need an AI server address (Server URL) and an APP Token. This guide shows you where to enter them in the app.',
+      'Omba APP Token na Server URL':'Request an APP Token and Server URL',
+      'Tuma ujumbe kwa Lidenko Tech ukiomba kuunganishiwa AI. Tutakupa Server URL na APP Token utakazotumia kwenye programu yako. Usitumie au kushare token yako hadharani.':'Message Lidenko Tech to request AI access. We will provide the Server URL and APP Token for your app. Keep your token private and never post it publicly.',
+      'Tuma ombi WhatsApp →':'Request access on WhatsApp →','Weka anwani ya seva':'Enter the server address',
+      'Fungua Lidenko POS, nenda sehemu ya AI, kisha fungua “Mipangilio ya seva ya AI”. Kwenye sehemu ya “Anwani ya seva”, bandika URL uliyopewa. Mfano wa muundo: https://jina-la-seva.example.com':'Open Lidenko POS and go to the AI section. Open “AI server settings”. Paste the URL you received into “Server URL”. Example format: https://your-server.example.com',
+      'Weka token yako':'Enter your token',
+      'Kwenye sehemu ya “Token”, bandika APP Token uliyopewa. Kisha bonyeza “Hifadhi”. Token hii si Groq API Key; usiweke Groq key kwenye programu.':'Paste the APP Token you received into the “Token” field, then tap “Save”. This is not your Groq API Key. Do not enter the Groq key in the app.',
+      'Jaribu muunganisho':'Test the connection',
+      'Bonyeza “Jaribu muunganisho”. Ikiwa taarifa ni sahihi na simu ina intaneti, programu itajaribu kuwasiliana na seva. Ujumbe utaonyesha kama muunganisho umefanikiwa au kuna tatizo.':'Tap “Test connection”. If the details are correct and your phone is online, the app will contact the server and show whether the connection worked.',
+      'Mambo ya kuzingatia':'Important notes',
+      'AI ya mtandaoni inahitaji intaneti, Server URL inayofanya kazi na APP Token sahihi. Seva ya Python ndiyo inayohifadhi Groq API Key; mtumiaji wa programu anahitaji APP Token tu. Hifadhi token yako kwa usalama na usimtumie mtu mwingine.':'Online AI requires an internet connection, a working Server URL and a valid APP Token. The Python server stores the Groq API Key; app users only need the APP Token. Keep your token secure.',
+      'KWANINI UFANYE KAZI NASI':'WHY WORK WITH US','Namna rahisi ya kutengeneza suluhisho':'A simple way to build the right solution',
+      'Kazi nzuri ya teknolojia huanza kwa kuelewa watu na changamoto zinazohitaji kutatuliwa.':'Good technology starts with understanding people and the problems they need to solve.',
+      'Tunasikiliza kwanza':'We listen first','Tunachukua muda kuelewa unachohitaji kabla ya kushauri au kutengeneza suluhisho.':'We take time to understand your needs before suggesting or building a solution.',
+      'Tunafanya iwe rahisi kutumia':'We make it easy to use','Tunatengeneza mifumo inayoeleweka na rahisi kutumia kila siku.':'We build systems that are clear and easy to use every day.',
+      'Tunafikiria mbele':'We plan for the future','Tunatengeneza kazi zinazoweza kuboreshwa kadiri mahitaji yanavyobadilika.':'We build solutions that can grow as your needs change.',
+      'Tuongee kuhusu unachotaka kutengeneza.':'Let’s talk about what you need.',
+      'Una wazo, changamoto ya biashara au mradi unaotaka kuujadili? Wasiliana na Lidenko Tech. Tueleze kwa kifupi unachohitaji ili tuzungumzie hatua zinazofuata.':'Have an idea, a business challenge or a project to discuss? Contact Lidenko Tech and tell us briefly what you need.',
+      'Wasiliana nasi WhatsApp →':'Contact us on WhatsApp →',
+      'Haki zote zimehifadhiwa.':'All rights reserved.'
+    };
+    const original = new Map();
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('body *').forEach(el => {
+        if (el.children.length === 0) {
+          if (!original.has(el)) original.set(el, el.textContent);
+          const sw = original.get(el).trim();
+          if (lang === 'en' && translations[sw]) el.textContent = translations[sw];
+          if (lang === 'sw') el.textContent = original.get(el);
+        }
+      });
+      const h1 = document.querySelector('.hero h1');
+      if (h1) h1.innerHTML = lang === 'en' ? translations['Teknolojia kwa<br><span>maendeleo ya kila siku.</span>'] : 'Teknolojia kwa<br><span>maendeleo ya kila siku.</span>';
+      document.getElementById('langToggle').textContent = lang === 'sw' ? 'EN' : 'SW';
+      try { localStorage.setItem('lidenko_site_lang', lang); } catch(e) {}
+    }
+    const toggle = document.getElementById('langToggle');
+    let current = 'sw';
+    try { current = localStorage.getItem('lidenko_site_lang') || 'sw'; } catch(e) {}
+    toggle.addEventListener('click', () => { current = current === 'sw' ? 'en' : 'sw'; setLanguage(current); });
+    if (current !== 'sw') setLanguage(current);
+  })();
+  </script>
+
+</body>
+</html>
